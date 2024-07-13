@@ -8,19 +8,15 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 import { Toaster } from 'react-hot-toast';
-import ReactModal from 'react-modal';
+import { Image } from '../../types';
 
-// Встановлюємо елемент кореня, якщо він не встановлений раніше
-if (process.env.NODE_ENV !== 'test') {
-  ReactModal.setAppElement('#root');
-}
 const App: React.FC = () => {
-  const [images, setImages] = useState<ImageData[]>([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [query, setQuery] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -30,7 +26,7 @@ const App: React.FC = () => {
         setLoading(true);
         setError(null);
         const data = await fetchImages(query, page);
-        setImages(prevImages => [...prevImages, ...data]);
+        setImages(prevImages => [...prevImages, ...data.results]);
       } catch (error) {
         setError('Something went wrong. Please try again later.');
       } finally {
@@ -51,7 +47,7 @@ const App: React.FC = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const handleImageClick = (image: ImageData) => {
+  const handleImageClick = (image: Image) => {
     setSelectedImage(image);
   };
 

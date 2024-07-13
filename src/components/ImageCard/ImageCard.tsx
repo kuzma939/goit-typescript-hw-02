@@ -1,9 +1,9 @@
 import styles from './ImageCard.module.css';
-import { ImageData } from '../../api'; // Переконайтеся, що шлях правильний до вашого api.ts
+import { Image } from '../../types';
 
 interface ImageCardProps {
-  image: ImageData;
-  onImageClick: (image: ImageData) => void;
+  image: Image;
+  onImageClick: (image: Image) => void;
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({ image, onImageClick }) => {
@@ -13,7 +13,12 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, onImageClick }) => {
 
   return (
     <div className={styles.card}>
-      <img src={image.urls.small} alt={image.alt_description} onClick={handleClick} className={styles.image} />
+      <img
+        src={image.urls.small}
+        alt={image.alt_description}
+        onClick={handleClick}
+        className={styles.image}
+      />
     </div>
   );
 };

@@ -1,12 +1,14 @@
 import ReactModal from 'react-modal';
 import styles from './ImageModal.module.css';
-import { ImageData } from '../../api'; // Переконайтеся, що шлях правильний до вашого api.ts
+import { Image } from '../../types';
 
 interface ImageModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  image: ImageData | null; // Оновлено: image може бути типу ImageData або null
+  image?: Image | null; // image can be undefined (not loaded yet) or null (no image selected)
 }
+
+ReactModal.setAppElement('#root');
 
 const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, image }) => {
   return (
@@ -16,7 +18,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, image }
       className={styles.modal}
       overlayClassName={styles.overlay}
     >
-      {image && ( // Перевіряємо, чи існує image перед використанням
+      {image && (
         <div>
           <img src={image.urls.regular} alt={image.alt_description} className={styles.image} />
           <p>{image.description || image.alt_description}</p>

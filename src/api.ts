@@ -1,26 +1,16 @@
+import { Image } from './types';
 import axios, { AxiosResponse } from 'axios';
+const BASE_URL: string = 'https://api.unsplash.com/search/photos';
+const API_KEY: string = 'rpElGEJiM1diG-ZBgj2Ap4jD7oscLZ7fagH2g9O1l20'; 
 
+interface FetchImagesResponse {
+  results: Image[];
+  // Додайте інші властивості, які повертає ваш API, якщо є
+}
 
-const BASE_URL = 'https://api.unsplash.com/search/photos';
-const API_KEY = 'rpElGEJiM1diG-ZBgj2Ap4jD7oscLZ7fagH2g9O1l20';
-
- 
-export interface ImageData {
-    id: string;
-    urls: {
-      regular: string;
-      small: string;
-    };
-    alt_description: string;
-    description?: string;
-    user: {
-      name: string;
-    };
-    likes: number;
-  }
-async function fetchImages(query: string, page: number): Promise<ImageData[]> {
+async function fetchImages(query: string, page: number): Promise<FetchImagesResponse> {
   try {
-    const response: AxiosResponse<{ results: ImageData[] }> = await axios.get(BASE_URL, {
+    const response: AxiosResponse<FetchImagesResponse> = await axios.get(BASE_URL, {
       params: {
         query,
         page,
@@ -28,9 +18,9 @@ async function fetchImages(query: string, page: number): Promise<ImageData[]> {
         client_id: API_KEY,
       },
     });
-    return response.data.results;
+    return response.data;
   } catch (error) {
-    throw new Error('Failed to fetch images from Unsplash API');
+    throw new Error('Failed to fetch images'); // або обробляйте помилку в іншому способі
   }
 }
 

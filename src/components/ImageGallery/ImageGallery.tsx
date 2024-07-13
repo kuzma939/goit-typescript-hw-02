@@ -1,10 +1,10 @@
 import ImageCard from '../ImageCard/ImageCard';
 import styles from './ImageGallery.module.css';
-import { ImageData } from '../../api'; // Приклад шляху до api.ts і імпорту типу ImageData
+import { Image } from '../../types';
 
 interface ImageGalleryProps {
-  images: ImageData[];
-  onImageClick: (image: ImageData) => void;
+  images: Image[];
+  onImageClick: (image: Image) => void;
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, onImageClick }) => {
