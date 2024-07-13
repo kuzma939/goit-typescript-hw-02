@@ -14,6 +14,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ image, onImageClick }) => {
   return (
     <div className={styles.card}>
       <img
+      
         src={image.urls.small}
         alt={image.alt_description}
         onClick={handleClick}

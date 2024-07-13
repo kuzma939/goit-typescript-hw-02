@@ -12,6 +12,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, onImageClick }) => 
     <ul className={styles.gallery}>
       {images.map((image) => (
         <li key={image.id} className={styles.galleryItem}>
+          
           <ImageCard image={image} onImageClick={onImageClick} />
         </li>
       ))}
