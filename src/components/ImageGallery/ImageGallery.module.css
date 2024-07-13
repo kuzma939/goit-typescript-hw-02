@@ -1,14 +1,13 @@
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1440px;
-  gap: 16px;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-  }
- 
-  .image {
-    flex-basis: calc((100% - 3 * 16px) / 3);
-  }
-  
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    gap: 16px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    }
+   
+    .image {
+      flex-basis: calc((100% - 3 * 16px) / 3);
+    }

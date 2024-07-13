@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #e0ffff;
 }
 
 .logo {
@@ -11,9 +10,6 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-}
-ul {
-  list-style: none;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -42,6 +38,5 @@ ul {
 }
 
 .read-the-docs {
-  
   color: #888;
 }
